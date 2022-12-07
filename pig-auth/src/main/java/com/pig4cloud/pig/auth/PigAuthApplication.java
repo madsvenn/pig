@@ -31,6 +31,9 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 public class PigAuthApplication {
 
 	public static void main(String[] args) {
+		StringBuffer sb = new StringBuffer("");
+		char c = (char)'0' + 1;
+
 		SpringApplication.run(PigAuthApplication.class, args);
 	}
 
