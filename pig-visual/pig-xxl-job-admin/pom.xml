@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.pig4cloud</groupId>
 		<artifactId>pig-visual</artifactId>
-		<version>3.6.2</version>
+		<version>3.6.3</version>
 	</parent>
 
 	<artifactId>pig-xxl-job-admin</artifactId>
@@ -55,8 +55,8 @@
 		</dependency>
 		<!-- mysql -->
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
 		</dependency>
 
 		<!-- xxl-job-core -->

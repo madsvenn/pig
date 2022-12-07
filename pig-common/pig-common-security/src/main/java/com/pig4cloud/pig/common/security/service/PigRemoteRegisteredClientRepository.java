@@ -13,11 +13,11 @@ import lombok.SneakyThrows;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
-import org.springframework.security.oauth2.core.OAuth2TokenFormat;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClient;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
-import org.springframework.security.oauth2.server.authorization.config.ClientSettings;
-import org.springframework.security.oauth2.server.authorization.config.TokenSettings;
+import org.springframework.security.oauth2.server.authorization.settings.ClientSettings;
+import org.springframework.security.oauth2.server.authorization.settings.OAuth2TokenFormat;
+import org.springframework.security.oauth2.server.authorization.settings.TokenSettings;
 import org.springframework.util.StringUtils;
 
 import java.time.Duration;
@@ -86,8 +86,7 @@ public class PigRemoteRegisteredClientRepository implements RegisteredClientRepo
 	@Cacheable(value = CacheConstants.CLIENT_DETAILS_KEY, key = "#clientId", unless = "#result == null")
 	public RegisteredClient findByClientId(String clientId) {
 
-		SysOauthClientDetails clientDetails = RetOps
-				.of(clientDetailsService.getClientDetailsById(clientId, SecurityConstants.FROM_IN)).getData()
+		SysOauthClientDetails clientDetails = RetOps.of(clientDetailsService.getClientDetailsById(clientId)).getData()
 				.orElseThrow(() -> new OAuthClientException("客户端查询异常，请检查数据库链接"));
 
 		RegisteredClient.Builder builder = RegisteredClient.withId(clientDetails.getClientId())
